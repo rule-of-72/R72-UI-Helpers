@@ -23,6 +23,7 @@ public class TextCollector {
     private struct Field {
         let originalText:       String?
         let placeholderText:    String?
+        let secure:             Bool
         let validator:          Validator?
     }
 
@@ -54,6 +55,7 @@ public class TextCollector {
                 textField.placeholder = field.placeholderText
                 textField.textAlignment = .left
                 textField.returnKeyType = .default
+                textField.isSecureTextEntry = field.secure
 
                 let delegate = TextFieldDelegate(alertController: alert, isValid: field.validator ?? Self.defaultValidator(_:))
                 textField.delegate = delegate
@@ -74,8 +76,8 @@ public class TextCollector {
         viewController.present(alert, animated: true, completion: nil)
     }
 
-    public func addField(originalText: String? = nil, placeholderText: String? = nil, validator: Validator? = nil) {
-        fields.append(Field(originalText: originalText, placeholderText: placeholderText, validator: validator))
+    public func addField(originalText: String? = nil, placeholderText: String? = nil, secure: Bool = false, validator: Validator? = nil) {
+        fields.append(Field(originalText: originalText, placeholderText: placeholderText, secure: secure, validator: validator))
     }
 
     // MARK: - Private methods

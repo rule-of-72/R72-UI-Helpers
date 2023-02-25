@@ -195,6 +195,14 @@ func promptForLink(sender: UIView) {
 }
 ```
 
+If you are collecting a password, account number, or other sensitive information, you can add a secure text field to your collector:
+
+```swift
+textCollector.addField(originalText: nil, placeholderText: "(Password)", secure: true) { text in
+    // Validate password meets complexity requirements, etc.
+}
+```
+
 ## TintedOffSwitch
 
 A subclass of `UISwitch` that lets you set a tint color for the switch when it is Off. 
